@@ -10,6 +10,9 @@ const register = require('./controllers/register')
 const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
+// const DATABASE_URL = process.env.DATABASE_URL // $env:DATABASE_URL=''
+const PORT = process.env.PORT // $env:PORT=3000
+
 const db = knex({
     client: 'pg',
     connection: {
@@ -47,14 +50,7 @@ app.post('/imageurl', (req, res) => {
     image.handleApiCall(req, res)
 })
 
-// $env:PORT=3000
-
-const PORT = process.env.PORT
-
-// $env:DATABASE_URL=''
-// const DATABASE_URL = process.env.DATABASE_URL
-
-app.listen(PORT, () => {
+app.listen(PORT || 3000, () => {
     console.log(`app is running on port ${PORT}`)
 })
 
