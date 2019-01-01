@@ -10,16 +10,14 @@ const register = require('./controllers/register')
 const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
-// const DATABASE_URL = process.env.DATABASE_URL // $env:DATABASE_URL=''
-const PORT = process.env.PORT // $env:PORT=3000
+const PORT = process.env.PORT
+const DATABASE_URL = process.env.DATABASE_URL
 
 const db = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
-        user: 'postgres',
-        password: 'postgres',
-        database: 'smartbrain',
+        host: DATABASE_URL,
+        ssl: true,
     },
 })
 
